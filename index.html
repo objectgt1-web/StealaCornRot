@@ -1,34 +1,30 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Steal a Cornrot</title>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{font-family:Arial,sans-serif;color:white;background:#08090d;min-height:100vh}
 .background{position:fixed;inset:0;background:linear-gradient(rgba(5,5,10,.65),rgba(5,5,10,.92)),url("background.png") center/cover no-repeat;filter:blur(2px);transform:scale(1.03);z-index:-1}
-
 nav{display:flex;justify-content:space-between;align-items:center;padding:22px 8%;background:#08090de8;border-bottom:1px solid #ffffff20;flex-wrap:wrap;gap:15px;position:sticky;top:0;z-index:10;backdrop-filter:blur(15px)}
 .logo{font-size:23px;font-weight:900;color:#b8ff61}
 nav a{color:white;text-decoration:none;margin-left:16px;font-weight:bold;display:inline-block;padding:7px 0}
 nav a:hover,nav a.active{color:#b8ff61}
-
 .hero{min-height:75vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px}
 .game-icon{width:145px;height:145px;border-radius:28px;object-fit:cover;border:3px solid #b8ff61;box-shadow:0 0 35px #9bff4560;margin-bottom:25px}
 h1{font-size:clamp(38px,7vw,75px);font-weight:1000;text-shadow:0 4px 20px #000}
 h1 span,section h2 span{color:#b8ff61}
 .hero p{color:#dedede;font-size:18px;margin:18px 0 30px;max-width:550px;line-height:1.6}
-
 .buttons,.socials{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .btn{display:inline-block;padding:15px 27px;border-radius:12px;text-decoration:none;font-weight:900;transition:.2s;border:none;cursor:pointer;font-size:15px}
 .btn:hover{transform:translateY(-3px)}
+.btn:disabled{opacity:.65;cursor:wait;transform:none}
 .primary{background:#b8ff61;color:#10140b}
 .discord{background:#5865F2;color:white}
-
 section{padding:55px 8%;text-align:center;background:#08090dcc;border-top:1px solid #ffffff12}
 section h2{font-size:32px;margin-bottom:25px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1000px;margin:auto}
@@ -38,8 +34,6 @@ section h2{font-size:32px;margin-bottom:25px}
 .card p{color:#c6c6c6;line-height:1.6}
 .socials{align-items:center}
 footer{padding:25px;text-align:center;color:#888;background:#050609}
-
-/* BUG TRACKER */
 .bug-heading{max-width:850px;margin:0 auto 30px}
 .bug-heading p{color:#b9b9c5;line-height:1.7}
 .bug-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;max-width:850px;margin:25px auto}
@@ -69,7 +63,6 @@ footer{padding:25px;text-align:center;color:#888;background:#050609}
 .empty{text-align:center;color:#aaa;padding:25px 10px;line-height:1.6}
 .bug-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:15px}
 .bug-tools select{padding:9px;border-radius:8px;background:#151820;color:white;border:1px solid #ffffff25}
-
 @media(max-width:750px){.bug-layout{grid-template-columns:1fr}}
 @media(max-width:600px){
 nav{justify-content:center;text-align:center}
@@ -81,138 +74,129 @@ section{padding:45px 5%}
 }
 </style>
 </head>
-
 <body>
 <div class="background"></div>
 
 <nav>
-    <div class="logo">🌽 STEAL A CORNROT</div>
-    <div>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#owners">Owners</a>
-        <a href="#socials">Socials</a>
-        <a href="#bugs">🐛 Bugs</a>
-    </div>
+<div class="logo">🌽 STEAL A CORNROT</div>
+<div>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#owners">Owners</a>
+<a href="#socials">Socials</a>
+<a href="#bugs">🐛 Bugs</a>
+</div>
 </nav>
 
 <main>
 <section class="hero" id="home">
-    <img src="background.png" alt="Steal a Cornrot" class="game-icon">
-    <h1>STEAL A <span>CORNROT</span></h1>
-    <p>Welcome to Steal a Cornrot 🌽 Join the chaos, collect cornrots and see what you can steal.</p>
-
-    <div class="buttons">
-        <a class="btn primary" href="https://www.roblox.com/games/99579652899442/Steal-a-Cornrot-2#!/game-instances" target="_blank" rel="noopener noreferrer">▶ PLAY GAME</a>
-        <a class="btn discord" href="https://discord.gg/GJsmqF5tXM" target="_blank" rel="noopener noreferrer">Join Discord</a>
-        <a class="btn" style="background:#242b1d;color:#b8ff61" href="#bugs">🐛 Report a Bug</a>
-    </div>
+<img src="background.png" alt="Steal a Cornrot" class="game-icon">
+<h1>STEAL A <span>CORNROT</span></h1>
+<p>Welcome to Steal a Cornrot 🌽 Join the chaos, collect cornrots and see what you can steal.</p>
+<div class="buttons">
+<a class="btn primary" href="https://www.roblox.com/games/99579652899442/Steal-a-Cornrot-2#!/game-instances" target="_blank" rel="noopener noreferrer">▶ PLAY GAME</a>
+<a class="btn discord" href="https://discord.gg/GJsmqF5tXM" target="_blank" rel="noopener noreferrer">Join Discord</a>
+<a class="btn" style="background:#242b1d;color:#b8ff61" href="#bugs">🐛 Report a Bug</a>
+</div>
 </section>
 
 <section id="about">
-    <h2>ABOUT <span>THE GAME</span></h2>
-    <div class="cards">
-        <div class="card"><h3>🌽 Collect</h3><p>Build up your collection of brainrots.</p></div>
-        <div class="card"><h3>💰 Get Rich</h3><p>Play Admin Abuse and tune in for some good brainrots.</p></div>
-        <div class="card"><h3>🔥 Have Fun</h3><p>Play with friends and join the Admin abuses.</p></div>
-    </div>
+<h2>ABOUT <span>THE GAME</span></h2>
+<div class="cards">
+<div class="card"><h3>🌽 Collect</h3><p>Build up your collection of brainrots.</p></div>
+<div class="card"><h3>💰 Get Rich</h3><p>Play Admin Abuse and tune in for some good brainrots.</p></div>
+<div class="card"><h3>🔥 Have Fun</h3><p>Play with friends and join the Admin abuses.</p></div>
+</div>
 </section>
 
 <section id="owners">
-    <h2>THE <span>OWNERS</span></h2>
-    <div class="cards">
-        <div class="card"><h3>👑 Owner</h3><p>Owner: Slxrptz</p><p>Game creator of Steal a Cornrot.</p></div>
-        <div class="card"><h3>🛠️ Developers</h3><p>Slxrptz</p></div>
-    </div>
+<h2>THE <span>OWNERS</span></h2>
+<div class="cards">
+<div class="card"><h3>👑 Owner</h3><p>Owner: Slxrptz</p><p>Game creator of Steal a Cornrot.</p></div>
+<div class="card"><h3>🛠️ Developers</h3><p>Slxrptz</p></div>
+</div>
 </section>
 
 <section id="socials">
-    <h2>OUR <span>SOCIALS</span></h2>
-    <div class="socials">
-        <a class="btn discord" href="https://discord.gg/GJsmqF5tXM" target="_blank" rel="noopener noreferrer">Discord Server</a>
-        <a class="btn primary" href="https://www.roblox.com/games/99579652899442/Steal-a-Cornrot-2#!/game-instances" target="_blank" rel="noopener noreferrer">Roblox Game</a>
-    </div>
+<h2>OUR <span>SOCIALS</span></h2>
+<div class="socials">
+<a class="btn discord" href="https://discord.gg/GJsmqF5tXM" target="_blank" rel="noopener noreferrer">Discord Server</a>
+<a class="btn primary" href="https://www.roblox.com/games/99579652899442/Steal-a-Cornrot-2#!/game-instances" target="_blank" rel="noopener noreferrer">Roblox Game</a>
+</div>
 </section>
 
 <section id="bugs">
-    <div class="bug-heading">
-        <h2>BUG <span>TRACKER</span> 🐛</h2>
-        <p>Found something broken in Steal a Cornrot? Check reported bugs or submit one. Leave your email if you want the developers to contact you when its fixed.</p>
-    </div>
+<div class="bug-heading">
+<h2>BUG <span>TRACKER</span> 🐛</h2>
+<p>Found something broken in Steal a Cornrot? Check reported bugs or submit one. Leave your email if you want the developers to contact you when its fixed.</p>
+</div>
 
-    <div class="bug-stats">
-        <div class="stat"><strong id="totalCount">0</strong><span>Total Reports</span></div>
-        <div class="stat"><strong id="openCount">0</strong><span>Unresolved Bugs</span></div>
-        <div class="stat"><strong id="fixedCount">0</strong><span>Fixed Bugs</span></div>
-    </div>
+<div class="bug-stats">
+<div class="stat"><strong id="totalCount">0</strong><span>Total Reports</span></div>
+<div class="stat"><strong id="openCount">0</strong><span>Unresolved Bugs</span></div>
+<div class="stat"><strong id="fixedCount">0</strong><span>Fixed Bugs</span></div>
+</div>
 
-    <div class="bug-layout">
-        <div class="bug-panel">
-            <div class="bug-tools">
-                <h3 style="margin:0">Reported Bugs</h3>
-                <select id="bugFilter" aria-label="Filter bug reports">
-                    <option value="all">All Reports</option>
-                    <option value="Open">Open</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Fixed">Fixed</option>
-                </select>
-            </div>
-            <div class="bug-list" id="bugList"></div>
-            <p class="notice">Reports are currently stored only in this browser. Email notifications are not connected yet.</p>
-        </div>
+<div class="bug-layout">
+<div class="bug-panel">
+<div class="bug-tools">
+<h3 style="margin:0">Reported Bugs</h3>
+<select id="bugFilter" aria-label="Filter bug reports">
+<option value="all">All Reports</option>
+<option value="Open">Open</option>
+<option value="In Progress">In Progress</option>
+<option value="Fixed">Fixed</option>
+</select>
+</div>
+<div class="bug-list" id="bugList"></div>
+<p class="notice">New reports are emailed to the developers. The report list shown here is saved only in this browser.</p>
+</div>
 
-        <div class="bug-panel">
-            <h3>Submit a Bug Report</h3>
-
-            <form class="bug-form" id="bugForm">
-                <div>
-                    <label for="bugTitle">Bug title</label>
-                    <input id="bugTitle" maxlength="80" placeholder="e.g. Cornrot disappears" required>
-                </div>
-
-                <div>
-                    <label for="bugCategory">Category</label>
-                    <select id="bugCategory">
-                        <option>Gameplay</option>
-                        <option>Items</option>
-                        <option>Trading</option>
-                        <option>UI / Menu</option>
-                        <option>Performance</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="bugSeverity">Severity</label>
-                    <select id="bugSeverity">
-                        <option>Low</option>
-                        <option selected>Medium</option>
-                        <option>High</option>
-                        <option>Critical</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="bugDescription">Bug description</label>
-                    <textarea id="bugDescription" maxlength="1000" placeholder="What happened and how can we reproduce it?" required></textarea>
-                </div>
-
-                <div>
-                    <label for="bugName">Roblox username (optional)</label>
-                    <input id="bugName" maxlength="30" placeholder="Your Roblox username">
-                </div>
-
-                <div>
-                    <label for="bugEmail">Email for fix notifications (optional)</label>
-                    <input id="bugEmail" type="email" maxlength="254" placeholder="you@example.com" autocomplete="email">
-                    <p class="notice">Only enter an email if you want to be contacted about this report.</p>
-                </div>
-
-                <button class="btn primary" type="submit">Submit Bug Report</button>
-                <p class="form-message" id="formMessage" role="status"></p>
-            </form>
-        </div>
-    </div>
+<div class="bug-panel">
+<h3>Submit a Bug Report</h3>
+<form class="bug-form" id="bugForm">
+<div>
+<label for="bugTitle">Bug title</label>
+<input id="bugTitle" maxlength="80" placeholder="e.g. Cornrot disappears" required>
+</div>
+<div>
+<label for="bugCategory">Category</label>
+<select id="bugCategory">
+<option>Gameplay</option>
+<option>Items</option>
+<option>Trading</option>
+<option>UI / Menu</option>
+<option>Performance</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label for="bugSeverity">Severity</label>
+<select id="bugSeverity">
+<option>Low</option>
+<option selected>Medium</option>
+<option>High</option>
+<option>Critical</option>
+</select>
+</div>
+<div>
+<label for="bugDescription">Bug description</label>
+<textarea id="bugDescription" maxlength="1000" placeholder="What happened and how can we reproduce it?" required></textarea>
+</div>
+<div>
+<label for="bugName">Roblox username (optional)</label>
+<input id="bugName" maxlength="30" placeholder="Your Roblox username">
+</div>
+<div>
+<label for="bugEmail">Email for fix notifications (optional)</label>
+<input id="bugEmail" type="email" maxlength="254" placeholder="you@example.com" autocomplete="email">
+<p class="notice">Only enter an email if you want to be contacted about this report.</p>
+</div>
+<button class="btn primary" type="submit">Submit Bug Report</button>
+<p class="form-message" id="formMessage" role="status"></p>
+</form>
+</div>
+</div>
 </section>
 </main>
 
@@ -222,155 +206,175 @@ section{padding:45px 5%}
 const storageKey = "stealACornrotBugReports";
 
 const exampleBugs = [
-    {
-        id: "example-1",
-        title: "Example: Item disappears",
-        category: "Items",
-        severity: "Medium",
-        description: "This is a sample report showing how bugs appear.",
-        name: "Demo",
-        email: "",
-        status: "Open",
-        created: "Example"
-    },
-    {
-        id: "example-2",
-        title: "Example: Menu issue",
-        category: "UI / Menu",
-        severity: "Low",
-        description: "This is another sample report. It is not a confirmed game bug.",
-        name: "Demo",
-        email: "",
-        status: "In Progress",
-        created: "Example"
-    }
+{
+id: "example-1",
+title: "Example: Item disappears",
+category: "Items",
+severity: "Medium",
+description: "This is a sample report showing how bugs appear.",
+name: "Demo",
+email: "",
+status: "Open",
+created: "Example"
+},
+{
+id: "example-2",
+title: "Example: Menu issue",
+category: "UI / Menu",
+severity: "Low",
+description: "This is another sample report. It is not a confirmed game bug.",
+name: "Demo",
+email: "",
+status: "In Progress",
+created: "Example"
+}
 ];
 
 function loadReports() {
-    try {
-        const saved = localStorage.getItem(storageKey);
-        return saved === null ? [...exampleBugs] : JSON.parse(saved);
-    } catch {
-        return [...exampleBugs];
-    }
+try {
+const saved = localStorage.getItem(storageKey);
+return saved === null ? [...exampleBugs] : JSON.parse(saved);
+} catch {
+return [...exampleBugs];
+}
 }
 
 let reports = loadReports();
 
 function saveReports() {
-    try {
-        localStorage.setItem(storageKey, JSON.stringify(reports));
-        return true;
-    } catch {
-        return false;
-    }
+try {
+localStorage.setItem(storageKey, JSON.stringify(reports));
+return true;
+} catch {
+return false;
+}
 }
 
 function renderBugs() {
-    const filter = document.getElementById("bugFilter").value;
-    const visible = reports.filter(bug => filter === "all" || bug.status === filter);
-    const list = document.getElementById("bugList");
+const filter = document.getElementById("bugFilter").value;
+const visible = reports.filter(bug => filter === "all" || bug.status === filter);
+const list = document.getElementById("bugList");
 
-    document.getElementById("totalCount").textContent = reports.length;
-    document.getElementById("openCount").textContent =
-        reports.filter(bug => bug.status === "Open" || bug.status === "In Progress").length;
-    document.getElementById("fixedCount").textContent =
-        reports.filter(bug => bug.status === "Fixed").length;
+document.getElementById("totalCount").textContent = reports.length;
+document.getElementById("openCount").textContent =
+reports.filter(bug => bug.status === "Open" || bug.status === "In Progress").length;
+document.getElementById("fixedCount").textContent =
+reports.filter(bug => bug.status === "Fixed").length;
 
-    list.replaceChildren();
+list.replaceChildren();
 
-    if (visible.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "empty";
-        empty.textContent = "No reports in this category yet";
-        list.appendChild(empty);
-        return;
-    }
+if (visible.length === 0) {
+const empty = document.createElement("div");
+empty.className = "empty";
+empty.textContent = "No reports in this category yet";
+list.appendChild(empty);
+return;
+}
 
-    visible.slice().reverse().forEach(bug => {
-        const item = document.createElement("article");
-        item.className = "bug-item";
+visible.slice().reverse().forEach(bug => {
+const item = document.createElement("article");
+item.className = "bug-item";
 
-        const meta = document.createElement("div");
-        meta.className = "bug-meta";
+const meta = document.createElement("div");
+meta.className = "bug-meta";
 
-        const status = document.createElement("span");
-        status.className = "tag " + (
-            bug.status === "Fixed" ? "fixed" :
-            bug.status === "In Progress" ? "progress" : "open"
-        );
-        status.textContent = bug.status;
+const status = document.createElement("span");
+status.className = "tag " + (
+bug.status === "Fixed" ? "fixed" :
+bug.status === "In Progress" ? "progress" : "open"
+);
+status.textContent = bug.status;
 
-        const severity = document.createElement("span");
-        severity.className = "tag";
-        severity.textContent = bug.severity || "Medium";
+const severity = document.createElement("span");
+severity.className = "tag";
+severity.textContent = bug.severity || "Medium";
 
-        const title = document.createElement("h4");
-        title.textContent = bug.title;
+const title = document.createElement("h4");
+title.textContent = bug.title;
 
-        const description = document.createElement("p");
-        description.textContent = bug.description;
+const description = document.createElement("p");
+description.textContent = bug.description;
 
-        const details = document.createElement("p");
-        details.style.marginTop = "12px";
-        details.style.fontSize = "12px";
-        details.textContent =
-            (bug.category || "Other") + " · By " +
-            (bug.name || "Anonymous") +
-            (bug.created && bug.created !== "Example" ? " · " + bug.created : "");
+const details = document.createElement("p");
+details.style.marginTop = "12px";
+details.style.fontSize = "12px";
+details.textContent =
+(bug.category || "Other") + " · By " +
+(bug.name || "Anonymous") +
+(bug.created && bug.created !== "Example" ? " · " + bug.created : "");
 
-        meta.append(status, severity);
-        item.append(meta, title, description, details);
-        list.appendChild(item);
-    });
+meta.append(status, severity);
+item.append(meta, title, description, details);
+list.appendChild(item);
+});
 }
 
 document.getElementById("bugFilter").addEventListener("change", renderBugs);
 
-document.getElementById("bugForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+document.getElementById("bugForm").addEventListener("submit", async function(event) {
+event.preventDefault();
 
-    const title = document.getElementById("bugTitle").value.trim();
-    const description = document.getElementById("bugDescription").value.trim();
-    const email = document.getElementById("bugEmail").value.trim();
-    const message = document.getElementById("formMessage");
+const title = document.getElementById("bugTitle").value.trim();
+const description = document.getElementById("bugDescription").value.trim();
+const email = document.getElementById("bugEmail").value.trim();
+const message = document.getElementById("formMessage");
+const submitButton = this.querySelector('button[type="submit"]');
 
-    if (!title || !description) {
-        message.textContent = "Please fill in the bug title and description.";
-        return;
-    }
+if (!title || !description) {
+message.textContent = "Please fill in the bug title and description.";
+return;
+}
 
-    const report = {
-        id: (typeof crypto !== "undefined" && crypto.randomUUID)
-            ? crypto.randomUUID()
-            : String(Date.now()),
-        title: title,
-        category: document.getElementById("bugCategory").value,
-        severity: document.getElementById("bugSeverity").value,
-        description: description,
-        name: document.getElementById("bugName").value.trim() || "Anonymous",
-        email: email,
-        status: "Open",
-        created: new Date().toLocaleDateString()
-    };
+const report = {
+title,
+category: document.getElementById("bugCategory").value,
+severity: document.getElementById("bugSeverity").value,
+description,
+username: document.getElementById("bugName").value.trim() || "Anonymous",
+email
+};
 
-    reports.push(report);
+submitButton.disabled = true;
+submitButton.textContent = "Sending report...";
+message.textContent = "Sending your report by email...";
 
-    if (!saveReports()) {
-        reports.pop();
-        message.textContent = "Could not save this report in your browser.";
-        return;
-    }
+try {
+const response = await fetch("/api/bugs", {
+method: "POST",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify(report)
+});
 
-    this.reset();
-    document.getElementById("bugSeverity").value = "Medium";
-    document.getElementById("bugFilter").value = "all";
+const result = await response.json().catch(() => ({}));
 
-    message.textContent = email
-        ? "Report saved with your email. Email notifications are not connected yet."
-        : "Report saved in this browser.";
+if (!response.ok || !result.success) {
+throw new Error(result.error || "Could not send the report. Please try again.");
+}
 
-    renderBugs();
+const localReport = {
+...report,
+name: report.username,
+status: "Open",
+created: new Date().toLocaleDateString(),
+id: (typeof crypto !== "undefined" && crypto.randomUUID)
+? crypto.randomUUID()
+: String(Date.now())
+};
+
+reports.push(localReport);
+saveReports();
+
+this.reset();
+document.getElementById("bugSeverity").value = "Medium";
+document.getElementById("bugFilter").value = "all";
+message.textContent = "Bug report emailed successfully! Thank you.";
+renderBugs();
+} catch (error) {
+message.textContent = error.message || "Something went wrong. Please try again.";
+} finally {
+submitButton.disabled = false;
+submitButton.textContent = "Submit Bug Report";
+}
 });
 
 renderBugs();
@@ -379,22 +383,21 @@ const navLinks = document.querySelectorAll("nav a");
 const sections = document.querySelectorAll("main section");
 
 if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.toggle(
-                        "active",
-                        link.getAttribute("href") === "#" + entry.target.id
-                    );
-                });
-            }
-        });
-    }, {rootMargin: "-25% 0px -60% 0px"});
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+navLinks.forEach(link => {
+link.classList.toggle(
+"active",
+link.getAttribute("href") === "#" + entry.target.id
+);
+});
+}
+});
+}, {rootMargin: "-25% 0px -60% 0px"});
 
-    sections.forEach(section => observer.observe(section));
+sections.forEach(section => observer.observe(section));
 }
 </script>
 </body>
 </html>
-```
