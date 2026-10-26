@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,201 +6,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Steal a Cornrot</title>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:Arial,sans-serif;color:white;background:#08090d;min-height:100vh}
+.background{position:fixed;inset:0;background:linear-gradient(rgba(5,5,10,.65),rgba(5,5,10,.92)),url("background.png") center/cover no-repeat;filter:blur(2px);transform:scale(1.03);z-index:-1}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 8%;background:rgba(0,0,0,.65);border-bottom:1px solid #ffffff20;flex-wrap:wrap;gap:15px;position:sticky;top:0;z-index:10;backdrop-filter:blur(15px)}
+.logo{font-size:23px;font-weight:900;color:#b8ff61}
+nav a{color:white;text-decoration:none;margin-left:18px;font-weight:bold;display:inline-block;padding:7px 0}
+nav a:hover,nav a.active{color:#b8ff61}
+.hero{min-height:75vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px}
+.game-icon{width:145px;height:145px;border-radius:28px;object-fit:cover;border:3px solid #b8ff61;box-shadow:0 0 35px #9bff4560;margin-bottom:25px}
+h1{font-size:clamp(38px,7vw,75px);font-weight:1000;text-shadow:0 4px 20px #000}
+h1 span,section h2 span{color:#b8ff61}
+.hero p{color:#dedede;font-size:18px;margin:18px 0 30px;max-width:550px;line-height:1.6}
+.buttons,.socials{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:15px 27px;border-radius:12px;text-decoration:none;font-weight:900;transition:.2s;border:none;cursor:pointer;font-size:15px}
+.btn:hover{transform:translateY(-3px)}
+.primary{background:#b8ff61;color:#10140b}
+.discord{background:#5865F2;color:white}
+section{padding:55px 8%;text-align:center;background:#08090dcc;border-top:1px solid #ffffff12}
+section h2{font-size:32px;margin-bottom:25px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1000px;margin:auto}
+.card{padding:28px;background:#151820e8;border:1px solid #ffffff18;border-radius:18px;transition:.25s}
+.card:hover{transform:translateY(-5px);border-color:#b8ff61}
+.card h3{margin-bottom:12px;color:#b8ff61}
+.card p{color:#c6c6c6;line-height:1.6}
+.socials{align-items:center}
+footer{padding:25px;text-align:center;color:#888;background:#050609}
 
-body {
-    font-family: Arial, sans-serif;
-    color: white;
-    background: #08090d;
-    min-height: 100vh;
-}
-
-.background {
-    position: fixed;
-    inset: 0;
-    background:
-        linear-gradient(rgba(5, 5, 10, .65), rgba(5, 5, 10, .92)),
-        url("background.png") center/cover no-repeat;
-    filter: blur(2px);
-    transform: scale(1.03);
-    z-index: -1;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 22px 8%;
-    background: rgba(0, 0, 0, .45);
-    border-bottom: 1px solid #ffffff20;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.logo {
-    font-size: 23px;
-    font-weight: 900;
-    color: #b8ff61;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: #b8ff61;
-}
-
-.hero {
-    min-height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.game-icon {
-    width: 145px;
-    height: 145px;
-    border-radius: 28px;
-    object-fit: cover;
-    border: 3px solid #b8ff61;
-    box-shadow: 0 0 35px #9bff4560;
-    margin-bottom: 25px;
-}
-
-h1 {
-    font-size: clamp(38px, 7vw, 75px);
-    font-weight: 1000;
-    text-shadow: 0 4px 20px #000;
-}
-
-h1 span {
-    color: #b8ff61;
-}
-
-.hero p {
-    color: #dedede;
-    font-size: 18px;
-    margin: 18px 0 30px;
-    max-width: 550px;
-    line-height: 1.6;
-}
-
-.buttons {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 15px 27px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 900;
-    transition: .2s;
-}
-
-.btn:hover {
-    transform: translateY(-4px);
-}
-
-.primary {
-    background: #b8ff61;
-    color: #10140b;
-}
-
-.discord {
-    background: #5865F2;
-    color: white;
-}
-
-section {
-    padding: 55px 8%;
-    text-align: center;
-    background: #08090dcc;
-    border-top: 1px solid #ffffff12;
-}
-
-section h2 {
-    font-size: 32px;
-    margin-bottom: 25px;
-}
-
-section h2 span {
-    color: #b8ff61;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
-}
-
-.card {
-    padding: 28px;
-    background: #151820e8;
-    border: 1px solid #ffffff18;
-    border-radius: 18px;
-    transition: .25s;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-    border-color: #b8ff61;
-}
-
-.card h3 {
-    margin-bottom: 12px;
-    color: #b8ff61;
-}
-
-.card p {
-    color: #c6c6c6;
-    line-height: 1.6;
-}
-
-.socials {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-footer {
-    padding: 25px;
-    text-align: center;
-    color: #888;
-    background: #050609;
-}
-
-@media(max-width: 600px) {
-    nav {
-        justify-content: center;
-        text-align: center;
-    }
-
-    nav a {
-        margin: 0 7px;
-    }
-}
+/* BUG REPORTS TAB */
+#bugs{min-height:70vh}
+.bug-heading{max-width:850px;margin:0 auto 30px}
+.bug-heading p{color:#b9b9c5;line-height:1.7}
+.bug-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;max-width:850px;margin:25px auto}
+.stat{background:#151820e8;border:1px solid #ffffff18;border-radius:15px;padding:20px}
+.stat strong{display:block;font-size:30px;color:#b8ff61;margin-bottom:7px}
+.stat span{color:#aaa;font-size:13px}
+.bug-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:22px;max-width:1000px;margin:auto;text-align:left}
+.bug-panel{background:#11141ceF;border:1px solid #ffffff18;border-radius:18px;padding:25px}
+.bug-panel h3{margin-bottom:18px;color:#b8ff61}
+.bug-list{display:grid;gap:12px}
+.bug-item{background:#1a1e28;border:1px solid #ffffff12;border-radius:12px;padding:17px}
+.bug-item h4{font-size:16px;margin-bottom:9px;overflow-wrap:anywhere}
+.bug-item p{color:#bdbdc8;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+.bug-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tag{font-size:11px;font-weight:bold;padding:6px 9px;border-radius:7px;background:#343946;color:#ddd}
+.tag.open{background:#482c17;color:#ffc078}
+.tag.fixed{background:#163c29;color:#8cffb5}
+.tag.progress{background:#28355c;color:#a9bdff}
+.bug-form{display:grid;gap:15px}
+.bug-form label{font-size:13px;font-weight:bold;color:#ddd;display:block;margin-bottom:7px}
+.bug-form input,.bug-form textarea,.bug-form select{width:100%;padding:12px;border-radius:9px;border:1px solid #ffffff20;background:#090c12;color:white;font:inherit;outline:none}
+.bug-form input:focus,.bug-form textarea:focus,.bug-form select:focus{border-color:#b8ff61}
+.bug-form textarea{min-height:110px;resize:vertical}
+.bug-form .btn{width:100%}
+.empty{text-align:center;color:#aaa;padding:25px 10px;line-height:1.6}
+.bug-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:15px}
+.bug-tools select{padding:9px;border-radius:8px;background:#151820;color:white;border:1px solid #ffffff25}
+.notice{font-size:12px;color:#888;margin-top:13px;line-height:1.6}
+.form-message{font-size:13px;color:#b8ff61;line-height:1.5}
+@media(max-width:750px){.bug-layout{grid-template-columns:1fr}}
+@media(max-width:600px){nav{justify-content:center;text-align:center}nav>div:last-child{display:flex;justify-content:center;gap:13px;flex-wrap:wrap}nav a{margin:0;font-size:14px}.hero{min-height:65vh}section{padding:45px 5%}.bug-panel{padding:18px}}
 </style>
 </head>
-
 <body>
-
 <div class="background"></div>
 
 <nav>
@@ -210,88 +79,291 @@ footer {
         <a href="#about">About</a>
         <a href="#owners">Owners</a>
         <a href="#socials">Socials</a>
+        <a href="#bugs">🐛 Bugs</a>
     </div>
 </nav>
 
 <main>
 <section class="hero" id="home">
     <img src="background.png" alt="Steal a Cornrot" class="game-icon">
-
     <h1>STEAL A <span>CORNROT</span></h1>
-
-    <p>
-        Welcome to Steal a Cornrot 🌽
-        Join the chaos, collect cornrots and see what you can steal.
-    </p>
-
+    <p>Welcome to Steal a Cornrot 🌽 Join the chaos, collect cornrots and see what you can steal.</p>
     <div class="buttons">
-        <a class="btn primary"
-           href="https://www.roblox.com/games/99579652899442/Steal-a-Cornrot-2#!/game-instances"
-           target="_blank">▶ PLAY GAME</a>
-
-        <a class="btn discord"
-           href="https://discord.gg/GJsmqF5tXM"
-           target="_blank">Join Discord</a>
+        <a class="btn primary" href="https://www.roblox.com/games/99579652899442/Steal-a-Cornrot-2#!/game-instances" target="_blank" rel="noopener noreferrer">▶ PLAY GAME</a>
+        <a class="btn discord" href="https://discord.gg/GJsmqF5tXM" target="_blank" rel="noopener noreferrer">Join Discord</a>
+        <a class="btn" style="background:#242b1d;color:#b8ff61" href="#bugs">🐛 Report a Bug</a>
     </div>
 </section>
 
 <section id="about">
     <h2>ABOUT <span>THE GAME</span></h2>
-
     <div class="cards">
-        <div class="card">
-            <h3>🌽 Collect</h3>
-            <p>Build up your collection of brainrots</p>
-        </div>
-
-        <div class="card">
-            <h3>💰 Get Rich</h3>
-            <p>Play Admin Abuse and tune in for some good brainrots.</p>
-        </div>
-
-        <div class="card">
-            <h3>🔥 Have Fun</h3>
-            <p>Play with friends and join the Admin abuses.</p>
-        </div>
+        <div class="card"><h3>🌽 Collect</h3><p>Build up your collection of brainrots.</p></div>
+        <div class="card"><h3>💰 Get Rich</h3><p>Play Admin Abuse and tune in for some good brainrots.</p></div>
+        <div class="card"><h3>🔥 Have Fun</h3><p>Play with friends and join the Admin abuses.</p></div>
     </div>
 </section>
 
 <section id="owners">
     <h2>THE <span>OWNERS</span></h2>
-
     <div class="cards">
-        <div class="card">
-            <h3>👑 Owner</h3>
-            <p>Owner: Slxrptz</p>
-            <p>Game creator of Steal a Cornrot.</p>
-        </div>
-
-        <div class="card">
-            <h3>🛠️ Developers</h3>
-            <p>Slxrptz</p>
-        </div>
+        <div class="card"><h3>👑 Owner</h3><p>Owner: Slxrptz</p><p>Game creator of Steal a Cornrot.</p></div>
+        <div class="card"><h3>🛠️ Developers</h3><p>Slxrptz</p></div>
     </div>
 </section>
 
 <section id="socials">
     <h2>OUR <span>SOCIALS</span></h2>
-
     <div class="socials">
-        <a class="btn discord"
-           href="https://discord.gg/YOURINVITE"
-           target="_blank">Discord Server</a>
+        <a class="btn discord" href="https://discord.gg/GJsmqF5tXM" target="_blank" rel="noopener noreferrer">Discord Server</a>
+        <a class="btn primary" href="https://www.roblox.com/games/99579652899442/Steal-a-Cornrot-2#!/game-instances" target="_blank" rel="noopener noreferrer">Roblox Game</a>
+    </div>
+</section>
 
-        <a class="btn primary"
-           href="https://www.roblox.com/games/99579652899442/Steal-a-Cornrot-2#!/game-instances"
-           target="_blank">Roblox Game</a>
+<section id="bugs">
+    <div class="bug-heading">
+        <h2>BUG <span>TRACKER</span> 🐛</h2>
+        <p>Found something broken in Steal a Cornrot? Check known bugs or submit a report so the developers know what needs fixing.</p>
+    </div>
+
+    <div class="bug-stats">
+        <div class="stat"><strong id="totalCount">0</strong><span>Total Reports</span></div>
+        <div class="stat"><strong id="openCount">0</strong><span>Open Bugs</span></div>
+        <div class="stat"><strong id="fixedCount">0</strong><span>Fixed Bugs</span></div>
+    </div>
+
+    <div class="bug-layout">
+        <div class="bug-panel">
+            <div class="bug-tools">
+                <h3 style="margin:0">Reported Bugs</h3>
+                <select id="bugFilter" aria-label="Filter bug reports">
+                    <option value="all">All Reports</option>
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Fixed">Fixed</option>
+                </select>
+            </div>
+            <div class="bug-list" id="bugList"></div>
+            <p class="notice">Demo reports are examples. New reports are saved only in this browser.</p>
+        </div>
+
+        <div class="bug-panel">
+            <h3>Submit a Bug Report</h3>
+            <form class="bug-form" id="bugForm">
+                <div>
+                    <label for="bugTitle">Bug title</label>
+                    <input id="bugTitle" maxlength="80" placeholder="e.g. Cornrot disappears" required>
+                </div>
+                <div>
+                    <label for="bugCategory">Category</label>
+                    <select id="bugCategory">
+                        <option>Gameplay</option>
+                        <option>Items</option>
+                        <option>Trading</option>
+                        <option>UI / Menu</option>
+                        <option>Performance</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="bugSeverity">Severity</label>
+                    <select id="bugSeverity">
+                        <option>Low</option>
+                        <option selected>Medium</option>
+                        <option>High</option>
+                        <option>Critical</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="bugDescription">What happened?</label>
+                    <textarea id="bugDescription" maxlength="1000" placeholder="Explain what happened and how to reproduce it..." required></textarea>
+                </div>
+                <div>
+                    <label for="bugName">Your username (optional)</label>
+                    <input id="bugName" maxlength="30" placeholder="Roblox username">
+                </div>
+                <button class="btn primary" type="submit">Submit Report</button>
+                <p class="form-message" id="formMessage" role="status"></p>
+            </form>
+        </div>
     </div>
 </section>
 </main>
 
-<footer>
-    © 2026 Steal a Cornrot. All rights reserved.
-</footer>
+<footer>© 2026 Steal a Cornrot. All rights reserved.</footer>
 
+<script>
+const storageKey = "stealACornrotBugReports";
+
+const exampleBugs = [
+    {
+        id: "example-1",
+        title: "Example: Item disappears",
+        category: "Items",
+        severity: "Medium",
+        description: "Example report. Replace this with a real bug when one is confirmed.",
+        name: "Demo",
+        status: "Open",
+        created: "Example"
+    },
+    {
+        id: "example-2",
+        title: "Example: Menu issue",
+        category: "UI / Menu",
+        severity: "Low",
+        description: "Example report showing how a bug appears in the tracker.",
+        name: "Demo",
+        status: "In Progress",
+        created: "Example"
+    }
+];
+
+let reports = loadReports();
+
+function loadReports() {
+    try {
+        const saved = localStorage.getItem(storageKey);
+        return saved === null ? [...exampleBugs] : JSON.parse(saved);
+    } catch {
+        return [...exampleBugs];
+    }
+}
+
+function saveReports() {
+    try {
+        localStorage.setItem(storageKey, JSON.stringify(reports));
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+function safeText(value) {
+    return String(value ?? "");
+}
+
+function renderBugs() {
+    const filter = document.getElementById("bugFilter").value;
+    const visible = reports.filter(b => filter === "all" || b.status === filter);
+    const list = document.getElementById("bugList");
+
+    document.getElementById("totalCount").textContent = reports.length;
+    document.getElementById("openCount").textContent =
+        reports.filter(b => b.status === "Open" || b.status === "In Progress").length;
+    document.getElementById("fixedCount").textContent =
+        reports.filter(b => b.status === "Fixed").length;
+
+    list.replaceChildren();
+
+    if (visible.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "No reports in this category yet";
+        list.appendChild(empty);
+        return;
+    }
+
+    visible.slice().reverse().forEach(bug => {
+        const item = document.createElement("article");
+        item.className = "bug-item";
+
+        const meta = document.createElement("div");
+        meta.className = "bug-meta";
+
+        const status = document.createElement("span");
+        status.className = "tag " + (
+            bug.status === "Fixed" ? "fixed" :
+            bug.status === "In Progress" ? "progress" : "open"
+        );
+        status.textContent = bug.status;
+
+        const severity = document.createElement("span");
+        severity.className = "tag";
+        severity.textContent = safeText(bug.severity);
+
+        const title = document.createElement("h4");
+        title.textContent = safeText(bug.title);
+
+        const description = document.createElement("p");
+        description.textContent = safeText(bug.description);
+
+        const details = document.createElement("p");
+        details.style.marginTop = "12px";
+        details.style.fontSize = "12px";
+        details.textContent =
+            safeText(bug.category) + " · By " + (bug.name || "Anonymous") +
+            (bug.created && bug.created !== "Example" ? " · " + bug.created : "");
+
+        meta.append(status, severity);
+        item.append(meta, title, description, details);
+        list.appendChild(item);
+    });
+}
+
+document.getElementById("bugFilter").addEventListener("change", renderBugs);
+
+document.getElementById("bugForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const title = document.getElementById("bugTitle").value.trim();
+    const description = document.getElementById("bugDescription").value.trim();
+    const message = document.getElementById("formMessage");
+
+    if (!title || !description) {
+        message.textContent = "Please fill in the title and description.";
+        return;
+    }
+
+    const report = {
+        id: (typeof crypto !== "undefined" && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : String(Date.now()),
+        title,
+        category: document.getElementById("bugCategory").value,
+        severity: document.getElementById("bugSeverity").value,
+        description,
+        name: document.getElementById("bugName").value.trim() || "Anonymous",
+        status: "Open",
+        created: new Date().toLocaleDateString()
+    };
+
+    reports.push(report);
+
+    if (!saveReports()) {
+        reports.pop();
+        message.textContent = "Could not save this report in your browser.";
+        return;
+    }
+
+    this.reset();
+    document.getElementById("bugSeverity").value = "Medium";
+    document.getElementById("bugFilter").value = "all";
+    message.textContent = "Report saved in this browser!";
+    renderBugs();
+});
+
+renderBugs();
+
+const navLinks = document.querySelectorAll("nav a");
+const sections = document.querySelectorAll("main section");
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.toggle(
+                        "active",
+                        link.getAttribute("href") === "#" + entry.target.id
+                    );
+                });
+            }
+        });
+    }, { rootMargin: "-25% 0px -60% 0px" });
+
+    sections.forEach(section => observer.observe(section));
+}
+</script>
 </body>
 </html>
 ```
