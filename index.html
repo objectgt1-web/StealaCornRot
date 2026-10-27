@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +45,9 @@ footer{padding:25px;text-align:center;color:#888;background:#050609}
 .bug-panel h3{margin-bottom:18px;color:#b8ff61}
 .bug-list{display:grid;gap:12px}
 .bug-item{background:#1a1e28;border:1px solid #ffffff12;border-radius:12px;padding:17px}
+.bug-item-footer{display:flex;justify-content:flex-end;margin-top:14px}
+.delete-bug{padding:8px 12px;border:1px solid #ff686855;border-radius:8px;background:#401b20;color:#ff9a9a;font-weight:bold;cursor:pointer}
+.delete-bug:hover{background:#63232b;color:white}
 .bug-item h4{font-size:16px;margin-bottom:9px;overflow-wrap:anywhere}
 .bug-item p{color:#bdbdc8;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
 .bug-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
@@ -135,7 +139,6 @@ section{padding:45px 5%}
 <section id="updates">
 <h2>GAME <span>UPDATES</span></h2>
 <p class="updates-intro">See the latest news and changes for Steal a Cornrot. New update notes will appear here when the developers post them.</p>
-
 <article class="update-card">
 <div class="update-meta">
 <span class="update-badge">UPDATE LOG</span>
@@ -325,7 +328,26 @@ details.textContent =
 (bug.created && bug.created !== "Example" ? " · " + bug.created : "");
 
 meta.append(status, severity);
-item.append(meta, title, description, details);
+
+const footer = document.createElement("div");
+footer.className = "bug-item-footer";
+
+const deleteButton = document.createElement("button");
+deleteButton.type = "button";
+deleteButton.className = "delete-bug";
+deleteButton.textContent = "Delete";
+deleteButton.setAttribute("aria-label", "Delete bug report: " + bug.title);
+deleteButton.addEventListener("click", () => {
+const confirmed = window.confirm("Delete this bug report from this browser?");
+if (!confirmed) return;
+
+reports = reports.filter(savedBug => savedBug.id !== bug.id);
+saveReports();
+renderBugs();
+});
+
+footer.appendChild(deleteButton);
+item.append(meta, title, description, details, footer);
 list.appendChild(item);
 });
 }
