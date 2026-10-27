@@ -92,7 +92,7 @@ module.exports = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "Bug report sent!"
+      message: "Bug report sent!, check your email to see if its fixed"
     });
   } catch (error) {
     console.error(error);
