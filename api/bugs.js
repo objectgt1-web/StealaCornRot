@@ -1,103 +1,121 @@
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
+  res.setHeader("Cache-Control", "no-store");
+
   if (req.method !== "POST") {
+    res.setHeader("Allow", "POST");
     return res.status(405).json({
+      success: false,
       error: "Method not allowed"
     });
   }
 
   try {
-    const {
-      title,
-      category,
-      severity,
-      description,
-      username,
-      email
-    } = req.body || {};
+    const { title, category, severity, description, username, email } =
+      req.body || {};
 
+    // Require an email address
+    if (
+      typeof email !== "string" ||
+      !email.trim() ||
+      email.trim().length > 254
+    ) {
+      return res.status(400).json({
+        success: false,
+        error: "A valid email address is required."
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email.trim())) {
+      return res.status(400).json({
+        success: false,
+        error: "Please enter a valid email address."
+      });
+    }
+
+    // Validate required report fields
     if (
       typeof title !== "string" ||
-      typeof description !== "string" ||
       !title.trim() ||
+      typeof description !== "string" ||
       !description.trim()
     ) {
       return res.status(400).json({
-        error: "Enter a title and description."
+        success: false,
+        error: "Bug title and description are required."
       });
     }
 
-    if (title.length > 120 || description.length > 4000) {
+    if (title.trim().length > 80 || description.trim().length > 1000) {
       return res.status(400).json({
-        error: "Report is too long."
+        success: false,
+        error: "The title or description is too long."
       });
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    const recipient = process.env.BUG_REPORT_EMAIL;
-    const sender = process.env.BUG_REPORT_FROM;
+    // EmailJS environment variables
+    const serviceId = process.env.EMAILJS_SERVICE_ID;
+    const templateId = process.env.EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+    const privateKey = process.env.EMAILJS_PRIVATE_KEY;
 
-    if (!apiKey || !recipient || !sender) {
+    if (!serviceId || !templateId || !publicKey || !privateKey) {
+      console.error("Missing EmailJS environment variables.");
+
       return res.status(500).json({
-        error: "Email settings are missing."
+        success: false,
+        error: "Email service is not configured correctly."
       });
     }
 
-    const safe = (v, max = 500) =>
-      typeof v === "string" ? v.trim().slice(0, max) : "Not provided";
-
-    const playerEmail =
-      typeof email === "string" &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
-        ? email.trim()
-        : "";
-
-    const report = [
-      "New Steal a Cornrot bug report!",
-      "",
-      `Title: ${safe(title, 120)}`,
-      `Category: ${safe(category, 80)}`,
-      `Severity: ${safe(severity, 40)}`,
-      `Roblox username: ${safe(username, 80)}`,
-      `Player email: ${playerEmail || "Not provided"}`,
-      "",
-      "Description:",
-      safe(description, 4000)
-    ].join("\n");
-
-    const response = await fetch(
-      "https://api.resend.com/emails",
+    // Send the report through EmailJS
+    const emailResponse = await fetch(
+      "https://api.emailjs.com/api/v1.0/email/send",
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          from: sender,
-          to: [recipient],
-          subject: `Bug Report: ${safe(title, 100)}`,
-          text: report,
-          ...(playerEmail ? { reply_to: playerEmail } : {})
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          accessToken: privateKey,
+          template_params: {
+            title: title.trim(),
+            category: String(category || "Other"),
+            severity: String(severity || "Medium"),
+            description: description.trim(),
+            username: String(username || "Anonymous"),
+            reply_to: email.trim(),
+            email: email.trim()
+          }
         })
       }
     );
 
-    if (!response.ok) {
-      console.error("Resend error:", await response.text());
+    if (!emailResponse.ok) {
+      const errorText = await emailResponse.text();
+      console.error("EmailJS error:", errorText);
+
       return res.status(502).json({
-        error: "Email failed. Check your Resend settings."
+        success: false,
+        error: "The email could not be sent. Please try again later."
       });
     }
 
     return res.status(200).json({
       success: true,
-      message: "Bug report sent!, check your email to see if its fixed"
+      message: "Bug report emailed successfully, Check your email to see if its fixed"
     });
   } catch (error) {
-    console.error(error);
+    console.error("Bug report error:", error);
+
     return res.status(500).json({
-      error: "Something went wrong."
+      success: false,
+      error: "An unexpected error occurred while submitting the report."
     });
   }
-};
+}
