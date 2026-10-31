@@ -14,6 +14,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:22px 8
 .logo{font-size:23px;font-weight:900;color:#b8ff61}
 nav a{color:white;text-decoration:none;margin-left:16px;font-weight:bold;display:inline-block;padding:7px 0}
 nav a:hover,nav a.active{color:#b8ff61}
+nav a.admin-link{background:#b8ff61;color:#10140b;padding:10px 14px;border-radius:9px;margin-left:16px}
+nav a.admin-link:hover{background:#d1ff9b;color:#10140b;transform:translateY(-2px)}
 .hero{min-height:75vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px}
 .game-icon{width:145px;height:145px;border-radius:28px;object-fit:cover;border:3px solid #b8ff61;box-shadow:0 0 35px #9bff4560;margin-bottom:25px}
 h1{font-size:clamp(38px,7vw,75px);font-weight:1000;text-shadow:0 4px 20px #000}
@@ -78,6 +80,7 @@ footer{padding:25px;text-align:center;color:#888;background:#050609}
 nav{justify-content:center;text-align:center}
 nav>div:last-child{display:flex;justify-content:center;gap:13px;flex-wrap:wrap}
 nav a{margin:0;font-size:14px}
+nav a.admin-link{margin:0}
 .hero{min-height:65vh}
 section{padding:45px 5%}
 .bug-panel{padding:18px}
@@ -96,6 +99,7 @@ section{padding:45px 5%}
 <a href="#socials">Socials</a>
 <a href="#updates">Updates</a>
 <a href="#bugs">🐛 Bugs</a>
+<a class="admin-link" href="https://stealacornrot.vercel.app/admin.html">Admin Dashboard</a>
 </div>
 </nav>
 
@@ -138,10 +142,15 @@ section{padding:45px 5%}
 
 <section id="updates">
 <h2>GAME <span>UPDATES</span></h2>
-<p class="updates-intro">See the latest news and announcements for Steal a Cornrot.</p>
-<div id="publicAnnouncements">
-<p class="empty">Loading announcements...</p>
+<p class="updates-intro">See the latest news and changes for Steal a Cornrot. New update notes will appear here when the developers post them.</p>
+<article class="update-card">
+<div class="update-meta">
+<span class="update-badge">UPDATE LOG</span>
+<span class="update-date">No updates posted yet</span>
 </div>
+<h3>Stay tuned 🌽</h3>
+<p>The First Update is out Everything is working! if anything isnt working please report a bug by scrolling down</p>
+</article>
 </section>
 
 <section id="bugs">
@@ -267,57 +276,6 @@ return true;
 } catch {
 return false;
 }
-}
-
-function renderPublicAnnouncements() {
-const container = document.getElementById("publicAnnouncements");
-if (!container) return;
-
-let announcements = [];
-try {
-announcements = JSON.parse(
-localStorage.getItem("stealACornrotAnnouncements") || "[]"
-);
-if (!Array.isArray(announcements)) announcements = [];
-} catch (error) {
-announcements = [];
-}
-
-container.replaceChildren();
-
-if (announcements.length === 0) {
-const empty = document.createElement("p");
-empty.className = "empty";
-empty.textContent = "No announcements posted yet.";
-container.appendChild(empty);
-return;
-}
-
-announcements.slice().reverse().forEach(announcement => {
-const card = document.createElement("article");
-card.className = "update-card";
-
-const meta = document.createElement("div");
-meta.className = "update-meta";
-
-const badge = document.createElement("span");
-badge.className = "update-badge";
-badge.textContent = announcement.type || "Announcement";
-
-const date = document.createElement("span");
-date.className = "update-date";
-date.textContent = announcement.date || "";
-
-const title = document.createElement("h3");
-title.textContent = announcement.title || "Untitled announcement";
-
-const description = document.createElement("p");
-description.textContent = announcement.description || "";
-
-meta.append(badge, date);
-card.append(meta, title, description);
-container.appendChild(card);
-});
 }
 
 function renderBugs() {
@@ -467,9 +425,8 @@ submitButton.textContent = "Submit Bug Report";
 });
 
 renderBugs();
-renderPublicAnnouncements();
 
-const navLinks = document.querySelectorAll("nav a");
+const navLinks = document.querySelectorAll("nav a:not(.admin-link)");
 const sections = document.querySelectorAll("main section");
 
 if ("IntersectionObserver" in window) {
