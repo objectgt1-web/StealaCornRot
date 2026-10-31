@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steal a Cornrot | Admin</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:Arial,sans-serif;
+background:#08090d;
+color:white;
+min-height:100vh;
+}
+.background{
+position:fixed;inset:0;
+background:linear-gradient(#050609bb,#08090df5),url("background.png") center/cover;
+z-index:-1;
+}
+header{
+padding:22px 7%;
+background:#08090de8;
+border-bottom:1px solid #ffffff20;
+display:flex;justify-content:space-between;
+align-items:center;flex-wrap:wrap;gap:15px;
+}
+.logo{color:#b8ff61;font-size:22px;font-weight:900}
+a{color:#b8ff61;text-decoration:none}
+main{max-width:1050px;margin:50px auto;padding:20px}
+.panel{
+background:#151820e8;
+border:1px solid #ffffff20;
+border-radius:17px;
+padding:25px;
+margin-bottom:22px;
+}
+h1,h2{margin-bottom:20px}
+h1 span,h2{color:#b8ff61}
+input,textarea,select{
+width:100%;padding:13px;
+margin:8px 0 16px;
+background:#090c12;color:white;
+border:1px solid #ffffff25;
+border-radius:9px;font:inherit;
+}
+textarea{min-height:100px;resize:vertical}
+button{
+padding:12px 18px;
+border:0;border-radius:9px;
+background:#b8ff61;color:#10140b;
+font-weight:bold;cursor:pointer;
+}
+button:hover{opacity:.85}
+.danger{background:#64252d;color:white}
+.secondary{background:#29301f;color:#b8ff61}
+.hidden{display:none!important}
+.message{color:#b8ff61;margin-top:12px}
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;margin-bottom:22px;
+}
+.stat{
+background:#151820;
+padding:20px;border-radius:12px;
+border:1px solid #ffffff15;
+}
+.stat strong{
+display:block;font-size:28px;
+color:#b8ff61;margin-bottom:5px;
+}
+.item{
+background:#20242e;
+padding:17px;border-radius:12px;
+margin-top:12px;
+overflow-wrap:anywhere;
+}
+.item h3{color:#b8ff61;margin-bottom:10px}
+.item p{color:#ccc;line-height:1.6;margin-bottom:10px}
+.actions{display:flex;gap:9px;flex-wrap:wrap}
+#dashboard{display:none}
+@media(max-width:600px){
+main{margin:20px auto}
+.panel{padding:17px}
+header{justify-content:center}
+}
+</style>
+</head>
+<body>
+<div class="background"></div>
+
+<header>
+<div class="logo">🌽 STEAL A CORNROT</div>
+<a href="index.html">← Back to Website</a>
+</header>
+
+<main>
+
+<div id="login" class="panel">
+<h1>ADMIN <span>LOGIN</span></h1>
+<p>Enter the administrator password to continue.</p>
+
+<form id="loginForm">
+<input
+type="password"
+id="password"
+placeholder="Admin password"
+required
+>
+<button type="submit">Login</button>
+</form>
+<p id="loginMessage" class="message"></p>
+</div>
+
+<div id="dashboard">
+
+<h1>ADMIN <span>DASHBOARD</span></h1>
+<p style="color:#aaa;margin-bottom:25px">
+Welcome to the Steal a Cornrot administration panel.
+</p>
+
+<div class="stats">
+<div class="stat">
+<strong id="total">0</strong>
+Total Bugs
+</div>
+<div class="stat">
+<strong id="open">0</strong>
+Open Bugs
+</div>
+<div class="stat">
+<strong id="fixed">0</strong>
+Fixed Bugs
+</div>
+</div>
+
+<div class="panel">
+<h2>🐛 Manage Bug Reports</h2>
+<div id="bugs"></div>
+</div>
+
+<div class="panel">
+<h2>📢 Create Announcement</h2>
+
+<form id="announcementForm">
+<label>Announcement title</label>
+<input id="announcementTitle" maxlength="100" required>
+
+<label>Announcement description</label>
+<textarea id="announcementDescription" maxlength="1000" required></textarea>
+
+<label>Announcement type</label>
+<select id="announcementType">
+<option>Announcement</option>
+<option>Update</option>
+<option>Maintenance</option>
+<option>Event</option>
+</select>
+
+<button type="submit">Post Announcement</button>
+</form>
+<p id="announcementMessage" class="message"></p>
+</div>
+
+<div class="panel">
+<h2>📋 Manage Announcements</h2>
+<div id="announcements"></div>
+</div>
+
+<div class="panel">
+<button class="danger" onclick="logout()">Logout</button>
+</div>
+
+</div>
+</main>
+
+<script>
+const ADMIN_PASSWORD = "Mixyisadminforwebsite";
+
+const BUG_KEY = "stealACornrotBugReports";
+const UPDATE_KEY = "stealACornrotAnnouncements";
+
+function getBugs(){
+try{
+return JSON.parse(localStorage.getItem(BUG_KEY)) || [];
+}catch{
+return [];
+}
+}
+
+function saveBugs(bugs){
+localStorage.setItem(BUG_KEY,JSON.stringify(bugs));
+}
+
+function getAnnouncements(){
+try{
+return JSON.parse(localStorage.getItem(UPDATE_KEY)) || [];
+}catch{
+return [];
+}
+}
+
+function saveAnnouncements(items){
+localStorage.setItem(UPDATE_KEY,JSON.stringify(items));
+}
+
+document.getElementById("loginForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+const entered = document.getElementById("password").value;
+
+if(entered === ADMIN_PASSWORD){
+document.getElementById("login").style.display="none";
+document.getElementById("dashboard").style.display="block";
+renderAll();
+}else{
+document.getElementById("loginMessage").textContent="Incorrect password.";
+}
+});
+
+function logout(){
+document.getElementById("dashboard").style.display="none";
+document.getElementById("login").style.display="block";
+document.getElementById("password").value="";
+}
+
+function renderBugs(){
+const bugs=getBugs();
+const container=document.getElementById("bugs");
+
+document.getElementById("total").textContent=bugs.length;
+document.getElementById("open").textContent=
+bugs.filter(b=>b.status!=="Fixed").length;
+document.getElementById("fixed").textContent=
+bugs.filter(b=>b.status==="Fixed").length;
+
+container.replaceChildren();
+
+if(!bugs.length){
+container.textContent="No bug reports found.";
+return;
+}
+
+bugs.slice().reverse().forEach(bug=>{
+const item=document.createElement("div");
+item.className="item";
+
+const title=document.createElement("h3");
+title.textContent=bug.title || "Untitled report";
+
+const description=document.createElement("p");
+description.textContent=bug.description || "";
+
+const details=document.createElement("p");
+details.textContent=
+"Category: "+(bug.category||"Other")+
+" | Severity: "+(bug.severity||"Medium")+
+" | Status: "+(bug.status||"Open")+
+" | Email: "+(bug.email||"Not provided");
+
+const actions=document.createElement("div");
+actions.className="actions";
+
+const status=document.createElement("button");
+status.className="secondary";
+status.textContent=bug.status==="Fixed"?"Reopen":"Mark Fixed";
+status.onclick=()=>{
+const all=getBugs();
+const target=all.find(b=>b.id===bug.id);
+if(target){
+target.status=target.status==="Fixed"?"Open":"Fixed";
+saveBugs(all);
+renderBugs();
+}
+};
+
+const del=document.createElement("button");
+del.className="danger";
+del.textContent="Delete";
+del.onclick=()=>{
+if(!confirm("Delete this report?"))return;
+saveBugs(getBugs().filter(b=>b.id!==bug.id));
+renderBugs();
+};
+
+actions.append(status,del);
+item.append(title,description,details,actions);
+container.appendChild(item);
+});
+}
+
+document.getElementById("announcementForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+const announcements=getAnnouncements();
+
+announcements.push({
+id:Date.now().toString(),
+title:document.getElementById("announcementTitle").value.trim(),
+description:document.getElementById("announcementDescription").value.trim(),
+type:document.getElementById("announcementType").value,
+date:new Date().toLocaleDateString()
+});
+
+saveAnnouncements(announcements);
+this.reset();
+
+document.getElementById("announcementMessage").textContent="Announcement saved!";
+renderAnnouncements();
+});
+
+function renderAnnouncements(){
+const container=document.getElementById("announcements");
+container.replaceChildren();
+
+const announcements=getAnnouncements();
+
+if(!announcements.length){
+container.textContent="No announcements yet.";
+return;
+}
+
+announcements.slice().reverse().forEach(a=>{
+const item=document.createElement("div");
+item.className="item";
+
+const title=document.createElement("h3");
+title.textContent=a.title;
+
+const description=document.createElement("p");
+description.textContent=a.description;
+
+const date=document.createElement("p");
+date.textContent=a.type+" | "+a.date;
+
+const del=document.createElement("button");
+del.className="danger";
+del.textContent="Delete";
+
+del.onclick=()=>{
+if(!confirm("Delete this announcement?"))return;
+saveAnnouncements(getAnnouncements().filter(x=>x.id!==a.id));
+renderAnnouncements();
+};
+
+item.append(title,description,date,del);
+container.appendChild(item);
+});
+}
+
+function renderAll(){
+renderBugs();
+renderAnnouncements();
+}
+</script>
+</body>
+</html>
