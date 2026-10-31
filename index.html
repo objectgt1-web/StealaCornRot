@@ -1,4 +1,4 @@
-<a href="admin.html">Admin</a>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,15 +138,10 @@ section{padding:45px 5%}
 
 <section id="updates">
 <h2>GAME <span>UPDATES</span></h2>
-<p class="updates-intro">See the latest news and changes for Steal a Cornrot. New update notes will appear here when the developers post them.</p>
-<article class="update-card">
-<div class="update-meta">
-<span class="update-badge">UPDATE LOG</span>
-<span class="update-date">No updates posted yet</span>
+<p class="updates-intro">See the latest news and announcements for Steal a Cornrot.</p>
+<div id="publicAnnouncements">
+<p class="empty">Loading announcements...</p>
 </div>
-<h3>Stay tuned 🌽</h3>
-<p>The First Update is out Everything is working! if anything isnt working please report a bug by scrolling down</p>
-</article>
 </section>
 
 <section id="bugs">
@@ -272,6 +267,57 @@ return true;
 } catch {
 return false;
 }
+}
+
+function renderPublicAnnouncements() {
+const container = document.getElementById("publicAnnouncements");
+if (!container) return;
+
+let announcements = [];
+try {
+announcements = JSON.parse(
+localStorage.getItem("stealACornrotAnnouncements") || "[]"
+);
+if (!Array.isArray(announcements)) announcements = [];
+} catch (error) {
+announcements = [];
+}
+
+container.replaceChildren();
+
+if (announcements.length === 0) {
+const empty = document.createElement("p");
+empty.className = "empty";
+empty.textContent = "No announcements posted yet.";
+container.appendChild(empty);
+return;
+}
+
+announcements.slice().reverse().forEach(announcement => {
+const card = document.createElement("article");
+card.className = "update-card";
+
+const meta = document.createElement("div");
+meta.className = "update-meta";
+
+const badge = document.createElement("span");
+badge.className = "update-badge";
+badge.textContent = announcement.type || "Announcement";
+
+const date = document.createElement("span");
+date.className = "update-date";
+date.textContent = announcement.date || "";
+
+const title = document.createElement("h3");
+title.textContent = announcement.title || "Untitled announcement";
+
+const description = document.createElement("p");
+description.textContent = announcement.description || "";
+
+meta.append(badge, date);
+card.append(meta, title, description);
+container.appendChild(card);
+});
 }
 
 function renderBugs() {
@@ -421,6 +467,7 @@ submitButton.textContent = "Submit Bug Report";
 });
 
 renderBugs();
+renderPublicAnnouncements();
 
 const navLinks = document.querySelectorAll("nav a");
 const sections = document.querySelectorAll("main section");
